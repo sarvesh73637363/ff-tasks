@@ -1,0 +1,116 @@
+
+<DOCTYPE html>
+<html>
+<head>
+    <title>Student Result Portal</title>
+
+    <style>
+        body {
+            background-color: lightblue;
+            font-family: Arial;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .box {
+            background-color: white;
+            padding: 30px;
+            width: 300px;
+            margin: auto;
+            border-radius: 10px;
+        }
+
+        input {
+            padding: 10px;
+            width: 90%;
+            margin: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 20px;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Student Result Portal</h1>
+
+    <div class="box">
+
+        <h2>Check Result</h2>
+
+        <form onsubmit="check(event)">
+
+            <input type="text" id="regno"
+            placeholder="Enter Register Number" required>
+
+            <br>
+
+            <button type="submit">View Result</button>
+
+        </form>
+
+        <div id="result"></div>
+
+    </div>
+
+    <script>
+
+        let students = {
+            "101": {name: "Arun", mark: 85},
+            "102": {name: "Kumar", mark: 75},
+            "103": {name: "Ravi", mark: 90},
+            "104": {name: "Ajay", mark: 45}
+        };
+
+        function check(event) {
+
+            event.preventDefault();
+
+            let reg = document.getElementById("regno").value;
+            let result = document.getElementById("result");
+
+            if (students[reg]) {
+
+                let name = students[reg].name;
+                let mark = students[reg].mark;
+
+                let status = "";
+
+                if (mark >= 40) {
+                    status = "Pass";
+                }
+                else {
+                    status = "Fail";
+                }
+
+                result.innerHTML =
+                    "<h3>Student Details</h3>" +
+                    "Name: " + name + "<br>" +
+                    "Register Number: " + reg + "<br>" +
+                    "Mark: " + mark + "<br>" +
+                    "Result: " + status;
+
+            }
+            else {
+
+                result.innerHTML = "Invalid Register Number";
+
+            }
+
+        }
+
+    </script>
+
+</body>
+</html>
